@@ -1,0 +1,133 @@
+@import '../styles/variables';
+
+.footer {
+  background: var(--color-gray-900);
+  color: var(--color-gray-300);
+  padding: var(--spacing-3xl) 0 var(--spacing-xl);
+  margin-top: auto;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+.footer__column {
+  &:nth-child(1) {
+    @media (max-width: 1024px) {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-white);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer__logo-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer__description {
+  color: var(--color-gray-400);
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.footer__title {
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  
+  li {
+    a {
+      color: var(--color-gray-400);
+      transition: color var(--transition-fast);
+      
+      &:hover {
+        color: var(--color-white);
+      }
+    }
+    
+    span {
+      color: var(--color-gray-400);
+    }
+  }
+}
+
+.footer__contacts {
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-gray-800);
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+  
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  a {
+    color: var(--color-gray-500);
+    transition: color var(--transition-fast);
+    
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+}

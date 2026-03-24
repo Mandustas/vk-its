@@ -1,0 +1,277 @@
+@import '../styles/variables';
+
+.contacts-page {
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-2xl);
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contacts-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .contact-card {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-gray-200);
+    transition: all var(--transition-base);
+
+    &:hover {
+      border-color: var(--color-primary-light);
+      box-shadow: var(--shadow-md);
+    }
+
+    &__icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border-radius: var(--radius-lg);
+      color: var(--color-primary);
+      flex-shrink: 0;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__content {
+      flex: 1;
+
+      h3 {
+        font-size: var(--font-size-base);
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin: 0 0 var(--spacing-sm) 0;
+      }
+
+      p {
+        font-size: var(--font-size-sm);
+        color: var(--color-gray-700);
+        margin: 0 0 var(--spacing-xs) 0;
+        line-height: 1.5;
+
+        a {
+          color: var(--color-primary);
+          font-weight: 500;
+
+          &:hover {
+            color: var(--color-primary-dark);
+          }
+        }
+      }
+    }
+
+    &__note {
+      font-size: var(--font-size-xs);
+      color: var(--color-gray-500);
+      margin: 0;
+    }
+
+    &__link {
+      display: inline-block;
+      font-size: var(--font-size-sm);
+      color: var(--color-primary);
+      font-weight: 500;
+      margin-top: var(--spacing-xs);
+      transition: color var(--transition-fast);
+
+      &:hover {
+        color: var(--color-primary-dark);
+      }
+    }
+  }
+
+  .contacts-form-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contacts-form-card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    border: 1px solid var(--color-gray-200);
+    box-shadow: var(--shadow-md);
+
+    h2 {
+      font-size: var(--font-size-2xl);
+      margin: 0 0 var(--spacing-sm) 0;
+      color: var(--color-gray-900);
+    }
+
+    > p {
+      color: var(--color-gray-600);
+      margin: 0 0 var(--spacing-xl) 0;
+    }
+  }
+
+  .form-success {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    margin-bottom: var(--spacing-xl);
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-success);
+      flex-shrink: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-gray-800);
+      font-size: var(--font-size-sm);
+      line-height: 1.5;
+    }
+  }
+
+  .contacts-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+
+    &.submitted {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    label {
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-gray-700);
+    }
+
+    input,
+    textarea,
+    select {
+      padding: var(--spacing-md);
+      font-size: var(--font-size-base);
+      font-family: var(--font-family);
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      color: var(--color-gray-900);
+      transition: all var(--transition-fast);
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      &::placeholder {
+        color: var(--color-gray-400);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--spacing-md) center;
+      padding-right: var(--spacing-2xl);
+    }
+  }
+
+  .form-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    text-align: center;
+    margin: 0;
+
+    a {
+      color: var(--color-primary);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-primary-dark);
+      }
+    }
+  }
+
+  .map-wrapper {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .map-placeholder {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: var(--color-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+
+    svg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .map-link {
+      position: relative;
+      z-index: 1;
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      color: var(--color-primary);
+      font-weight: 500;
+      font-size: var(--font-size-sm);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: var(--color-primary-dark);
+      }
+    }
+  }
+}

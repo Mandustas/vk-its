@@ -1,0 +1,15 @@
+# robots.txt - Правила для поисковых систем
+# ВК ИТС - Интеллектуальные транспортные системы
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vc-its.ru/sitemap.xml
+
+# Хост
+Host: https://vc-its.ru
+
+# Запрет индексации служебных путей (если будут)
+# Disallow: /admin/
+# Disallow: /api/
