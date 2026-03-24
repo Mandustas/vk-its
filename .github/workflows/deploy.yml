@@ -20,6 +20,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./vk-its
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,11 +35,9 @@ jobs:
           cache-dependency-path: vk-its/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./vk-its
         run: npm ci
 
       - name: Build
-        working-directory: ./vk-its
         run: npm run build
 
       - name: Upload artifact
