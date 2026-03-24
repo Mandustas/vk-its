@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Answers.scss'
 
@@ -8,6 +9,7 @@ interface Answer {
   fullAnswer: string
   relatedProducts: string[]
   relatedSolutions: string[]
+  category: string
 }
 
 const answers: Answer[] = [
@@ -40,7 +42,8 @@ const answers: Answer[] = [
    - PoE — упрощает монтаж, требуется один кабель
    - 12В/24В — отдельный блок питания`,
     relatedProducts: ['factor-ai', 'factor-b2', 'video-surveillance'],
-    relatedSolutions: ['industry', 'smart-city']
+    relatedSolutions: ['industry', 'smart-city'],
+    category: 'Видеоаналитика'
   },
   {
     id: 'anpr-accuracy',
@@ -66,7 +69,8 @@ const answers: Answer[] = [
 - Настройка экспозиции под условия освещения
 - Применение алгоритмов улучшения изображения`,
     relatedProducts: ['factor-kfvvf', 'plate-enhancement', 'factor-ai'],
-    relatedSolutions: ['transport']
+    relatedSolutions: ['transport'],
+    category: 'Распознавание номеров'
   },
   {
     id: 'what-is-plate-enhancement',
@@ -106,7 +110,8 @@ const answers: Answer[] = [
 
 **Результат**: изображение номера с качеством, пригодным для визуальной идентификации и экспертного заключения.`,
     relatedProducts: ['plate-enhancement', 'factor-kfvvf'],
-    relatedSolutions: ['transport', 'critical-infrastructure']
+    relatedSolutions: ['transport', 'critical-infrastructure'],
+    category: 'Распознавание номеров'
   },
   {
     id: 'edge-vs-server-analytics',
@@ -159,7 +164,8 @@ const answers: Answer[] = [
 - Сервер обрабатывает сложные сценарии и архив
 - Оптимальное соотношение цены и производительности`,
     relatedProducts: ['factor-ai', 'server-analytics'],
-    relatedSolutions: ['transport', 'industry', 'smart-city']
+    relatedSolutions: ['transport', 'industry', 'smart-city'],
+    category: 'Видеоаналитика'
   },
   {
     id: 'its-integration',
@@ -210,7 +216,8 @@ const answers: Answer[] = [
    - Пилотная эксплуатация (1-3 месяца)
    - Промышленная эксплуатация`,
     relatedProducts: ['factor-kfvvf', 'server-analytics'],
-    relatedSolutions: ['transport']
+    relatedSolutions: ['transport'],
+    category: 'Интеграция'
   },
   {
     id: 'video-storage-calculation',
@@ -260,18 +267,59 @@ V = 10 × 4 000 000 × 24 × 3600 × 30 / 8 = 12 960 000 000 000 байт ≈ 12
 - Используйте RAID для надёжности
 - Рассмотрите облачное хранение для архива`,
     relatedProducts: ['video-surveillance', 'server-analytics'],
-    relatedSolutions: ['industry', 'smart-city']
+    relatedSolutions: ['industry', 'smart-city'],
+    category: 'Видеонаблюдение'
   }
 ]
 
+const categories = ['Все', 'Видеоаналитика', 'Распознавание номеров', 'Интеграция', 'Видеонаблюдение']
+
 function Answers() {
+  const [activeCategory, setActiveCategory] = useState('Все')
+  const [openAnswerId, setOpenAnswerId] = useState<string | null>(null)
+
+  const filteredAnswers = activeCategory === 'Все'
+    ? answers
+    : answers.filter(a => a.category === activeCategory)
+
+  const toggleAnswer = (id: string) => {
+    setOpenAnswerId(openAnswerId === id ? null : id)
+  }
+
+  const parseAnswer = (text: string) => {
+    const lines = text.split('\n')
+    return lines.map((line, i) => {
+      if (line.trim() === '') return null
+      
+      if (line.startsWith('**') && line.endsWith('**')) {
+        return <h4 key={i}>{line.replace(/\*\*/g, '')}</h4>
+      }
+      
+      if (line.startsWith('1. **') || line.match(/^\d+\./)) {
+        const content = line.replace(/^\d+\.\s*\*\*|\*\*/g, '')
+        return <li key={i}>{content}</li>
+      }
+      
+      if (line.startsWith('   - ')) {
+        const content = line.replace(/^   - /, '')
+        return <li key={i} className="answer-card__subitem">{content}</li>
+      }
+      
+      if (line.startsWith('*') && line.endsWith('*')) {
+        return <em key={i}>{line.replace(/\*/g, '')}</em>
+      }
+      
+      return <p key={i}>{line}</p>
+    }).filter(Boolean)
+  }
+
   return (
     <div className="answers-page">
       <section className="page-hero">
         <div className="container">
           <h1>Ответы на вопросы</h1>
           <p>
-            Развёрнутые ответы на популярные вопросы о видеоаналитике, 
+            Развёрнутые ответы на популярные вопросы о видеоаналитике,
             распознавании номеров и интеллектуальных транспортных системах
           </p>
         </div>
@@ -281,63 +329,89 @@ function Answers() {
         <div className="container">
           <div className="answers-intro">
             <p>
-              Каждая статья содержит подробное объяснение, практические рекомендации 
+              Каждая статья содержит подробное объяснение, практические рекомендации
               и ссылки на соответствующие продукты и решения ВК ИТС.
             </p>
           </div>
 
+          <div className="answers-filters">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`answers-filter__btn ${activeCategory === category ? 'active' : ''}`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
           <div className="answers-list">
-            {answers.map((answer) => (
+            {filteredAnswers.map((answer) => (
               <article key={answer.id} className="answer-card">
-                <div className="answer-card__header">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                  <h2>{answer.question}</h2>
+                <div className="answer-card__header" onClick={() => toggleAnswer(answer.id)}>
+                  <div className="answer-card__icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                      <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div className="answer-card__question">
+                    <span className="answer-card__category">{answer.category}</span>
+                    <h2>{answer.question}</h2>
+                  </div>
+                  <div className={`answer-card__toggle ${openAnswerId === answer.id ? 'open' : ''}`}>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
                 </div>
-                <div className="answer-card__short">
-                  <strong>Краткий ответ:</strong> {answer.shortAnswer}
-                </div>
-                <div className="answer-card__full">
-                  {answer.fullAnswer.split('\n').map((paragraph, i) => {
-                    if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                      return <h4 key={i}>{paragraph.replace(/\*\*/g, '')}</h4>
-                    }
-                    if (paragraph.startsWith('*') && paragraph.endsWith('*')) {
-                      return <em key={i}>{paragraph.replace(/\*/g, '')}</em>
-                    }
-                    if (paragraph.trim() === '') {
-                      return <br key={i} />
-                    }
-                    return <p key={i}>{paragraph}</p>
-                  })}
-                </div>
-                <div className="answer-card__footer">
-                  {answer.relatedProducts.length > 0 && (
-                    <div className="answer-card__section">
-                      <span>Продукты:</span>
-                      {answer.relatedProducts.map((productId, i) => (
-                        <Link key={i} to={`/products/${productId}`} className="answer-card__tag">
-                          {productId}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                  {answer.relatedSolutions.length > 0 && (
-                    <div className="answer-card__section">
-                      <span>Решения:</span>
-                      {answer.relatedSolutions.map((solutionId, i) => (
-                        <Link key={i} to="/solutions" className="answer-card__tag">
-                          {solutionId}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                
+                <div className={`answer-card__body ${openAnswerId === answer.id ? 'open' : ''}`}>
+                  <div className="answer-card__short">
+                    <strong>Краткий ответ:</strong> {answer.shortAnswer}
+                  </div>
+                  
+                  <div className="answer-card__full">
+                    {parseAnswer(answer.fullAnswer)}
+                  </div>
+                  
+                  <div className="answer-card__footer">
+                    {answer.relatedProducts.length > 0 && (
+                      <div className="answer-card__section">
+                        <span>Продукты:</span>
+                        <div className="answer-card__tags">
+                          {answer.relatedProducts.map((productId, i) => (
+                            <Link key={i} to={`/products/${productId}`} className="answer-card__tag">
+                              {productId}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {answer.relatedSolutions.length > 0 && (
+                      <div className="answer-card__section">
+                        <span>Решения:</span>
+                        <div className="answer-card__tags">
+                          {answer.relatedSolutions.map((solutionId, i) => (
+                            <Link key={i} to="/solutions" className="answer-card__tag">
+                              {solutionId}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
           </div>
+
+          {filteredAnswers.length === 0 && (
+            <div className="answers-empty">
+              <p>В этой категории пока нет вопросов</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -346,7 +420,7 @@ function Answers() {
           <div className="answers-cta">
             <h2>Остались вопросы?</h2>
             <p>
-              Задайте вопрос нашим специалистам — мы подготовим 
+              Задайте вопрос нашим специалистам — мы подготовим
               развёрнутый ответ с учётом вашей ситуации
             </p>
             <Link to="/contacts" className="btn btn--primary btn--lg">
