@@ -17,9 +17,11 @@ import Answers from './pages/Answers'
 import Resources from './pages/Resources'
 import Search from './pages/Search'
 
+const basename = import.meta.env.BASE_URL
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <div className="app">
         <SchemaOrg />
         <Header />
