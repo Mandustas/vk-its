@@ -17,6 +17,15 @@ function Products() {
 
       <section className="section">
         <div className="container">
+          <div className="products-header">
+            <div className="products-header__text">
+              <h2>Все продукты</h2>
+              <p>Выберите подходящее решение для ваших задач</p>
+            </div>
+            <Link to="/compare" className="btn btn--secondary">
+              Сравнить продукты
+            </Link>
+          </div>
           <div className="products-grid">
             {products.map((product) => (
               <Link to={`/products/${product.id}`} key={product.id} className="card product-item">
@@ -37,18 +46,6 @@ function Products() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--gray">
-        <div className="container">
-          <div className="compare-banner">
-            <h2>Затрудняетесь с выбором?</h2>
-            <p>Сравните характеристики продуктов и подберите оптимальное решение для ваших задач</p>
-            <Link to="/compare" className="btn btn--primary">
-              Сравнить продукты
-            </Link>
           </div>
         </div>
       </section>

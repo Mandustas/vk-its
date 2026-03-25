@@ -1,6 +1,34 @@
 @import '../styles/variables';
 
 .products-page {
+  .products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+
+    &__text {
+      h2 {
+        font-size: var(--font-size-2xl);
+        margin: 0 0 var(--spacing-xs);
+        color: var(--color-gray-900);
+      }
+
+      p {
+        color: var(--color-gray-500);
+        margin: 0;
+        font-size: var(--font-size-sm);
+      }
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));

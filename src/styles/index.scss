@@ -256,6 +256,13 @@ a {
 .mb-2 { margin-bottom: var(--spacing-xl); }
 .mb-3 { margin-bottom: var(--spacing-2xl); }
 
+.btn-group {
+  display: inline-flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 // Page Hero
 .page-hero {
   background: var(--gradient-dark);

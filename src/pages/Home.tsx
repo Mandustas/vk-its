@@ -196,9 +196,14 @@ function Home() {
             ))}
           </div>
           <div className="text-center mt-3">
-            <Link to="/products" className="btn btn--secondary">
-              Все продукты
-            </Link>
+            <div className="btn-group">
+              <Link to="/products" className="btn btn--secondary">
+                Все продукты
+              </Link>
+              <Link to="/compare" className="btn btn--secondary">
+                Сравнить продукты
+              </Link>
+            </div>
           </div>
         </div>
       </section>

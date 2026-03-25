@@ -231,9 +231,11 @@
   gap: var(--spacing-md);
   flex-wrap: wrap;
   animation: slideInUp 1s ease-out 0.4s both;
+  margin-bottom: var(--spacing-2xl);
   
   @media (max-width: 768px) {
     justify-content: center;
+    margin-bottom: var(--spacing-xl);
   }
 }
 
