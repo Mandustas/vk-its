@@ -1,3 +1,10 @@
+import securityCamera from '../assets/images/security-camera.jpg'
+import factorySurveillance from '../assets/images/factory-surveillance.jpg'
+import aiTechnology from '../assets/images/ai-technology.jpg'
+import serverRoom from '../assets/images/server-room.jpg'
+import trafficMonitoring from '../assets/images/traffic-monitoring.jpg'
+import productCamera from '../assets/images/product-camera.jpg'
+
 export interface Product {
   id: string;
   name: string;
@@ -7,7 +14,7 @@ export interface Product {
   benefits: string[];
   applications: string[];
   icon: string;
-  image?: string;
+  image: string;
 }
 
 export const products: Product[] = [
@@ -37,7 +44,8 @@ export const products: Product[] = [
       'Мониторинг перекрестков и пешеходных переходов',
       'Контроль проезда на красный свет'
     ],
-    icon: 'camera'
+    icon: 'camera',
+    image: securityCamera
   },
   {
     id: 'factor-b2',
@@ -65,7 +73,8 @@ export const products: Product[] = [
       'Охрана периметра',
       'Мониторинг рабочих зон'
     ],
-    icon: 'building'
+    icon: 'building',
+    image: factorySurveillance
   },
   {
     id: 'factor-ai',
@@ -93,7 +102,8 @@ export const products: Product[] = [
       'Контроль критической инфраструктуры',
       'Транспортные узлы и вокзалы'
     ],
-    icon: 'cpu'
+    icon: 'cpu',
+    image: aiTechnology
   },
   {
     id: 'server-analytics',
@@ -121,7 +131,8 @@ export const products: Product[] = [
       'Крупные промышленные объекты',
       'Сети объектов распределенных сетей'
     ],
-    icon: 'server'
+    icon: 'server',
+    image: serverRoom
   },
   {
     id: 'plate-enhancement',
@@ -149,7 +160,8 @@ export const products: Product[] = [
       'Экспертная деятельность',
       'Контроль доступа по номерам'
     ],
-    icon: 'search'
+    icon: 'search',
+    image: trafficMonitoring
   },
   {
     id: 'video-surveillance',
@@ -177,6 +189,7 @@ export const products: Product[] = [
       'Производственные площадки',
       'Жилые комплексы и ТСЖ'
     ],
-    icon: 'video'
+    icon: 'video',
+    image: productCamera
   }
 ];

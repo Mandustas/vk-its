@@ -89,7 +89,7 @@ function Home() {
               и распознавания
             </h1>
             <p className="hero__subtitle">
-              Комплексные решения для транспорта, промышленности и умного города. 
+              Комплексные решения для транспорта, промышленности и умного города.
               Распознавание номеров, детекция событий, AI-аналитика на борту.
             </p>
             <div className="hero__actions">
@@ -182,33 +182,16 @@ function Home() {
           <div className="grid grid--3">
             {featuredProducts.map((product, index) => (
               <Link to={`/products/${product.id}`} key={product.id} className={`card product-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
-                <div className="product-card__icon">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {product.icon === 'camera' && (
-                      <>
-                        <rect x="8" y="14" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2"/>
-                        <circle cx="24" cy="26" r="8" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M16 14V10H32V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </>
-                    )}
-                    {product.icon === 'building' && (
-                      <>
-                        <rect x="10" y="8" width="28" height="32" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M18 18H22M18 26H22M18 34H22M26 18H30M26 26H30M26 34H30" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </>
-                    )}
-                    {product.icon === 'cpu' && (
-                      <>
-                        <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2"/>
-                        <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.3"/>
-                        <path d="M24 4V8M24 40V44M4 24H8M40 24H44M10 10L14 14M34 34L38 38M10 38L14 34M34 14L38 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </>
-                    )}
-                  </svg>
+                <div className="product-card__image-wrapper">
+                  {product.image && (
+                    <img src={product.image} alt={product.name} className="product-card__image" loading="lazy" />
+                  )}
                 </div>
-                <h3 className="product-card__title">{product.name}</h3>
-                <p className="product-card__desc">{product.shortDescription}</p>
-                <span className="product-card__link">Подробнее →</span>
+                <div className="product-card__content">
+                  <h3 className="product-card__title">{product.name}</h3>
+                  <p className="product-card__desc">{product.shortDescription}</p>
+                  <span className="product-card__link">Подробнее →</span>
+                </div>
               </Link>
             ))}
           </div>
@@ -298,6 +281,11 @@ function Home() {
           <div className="grid grid--3">
             {featuredCases.map((caseItem, index) => (
               <div key={caseItem.id} className={`card case-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
+                <div className="case-card__image-wrapper">
+                  {caseItem.image && (
+                    <img src={caseItem.image} alt={caseItem.title} className="case-card__image" loading="lazy" />
+                  )}
+                </div>
                 <div className="case-card__header">
                   <span className="case-card__industry">
                     {caseItem.industry === 'transport' && 'Транспорт'}

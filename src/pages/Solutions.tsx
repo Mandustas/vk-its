@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import { solutions } from '../data/solutions'
+import { products } from '../data/products'
 import './Solutions.scss'
+
+const getProductById = (id: string) => products.find(p => p.id === id)
 
 function Solutions() {
   return (
@@ -112,11 +115,16 @@ function Solutions() {
                   <div className="solution-detail-card__products">
                     <span>Рекомендуемые продукты:</span>
                     <div className="solution-detail-card__products-list">
-                      {solution.recommendedProducts.slice(0, 3).map((productId, i) => (
-                        <span key={i} className="solution-detail-card__product-tag">
-                          {productId}
-                        </span>
-                      ))}
+                      {solution.recommendedProducts.slice(0, 3).map((productId, i) => {
+                        const product = getProductById(productId)
+                        return product ? (
+                          <Link key={i} to={`/products/${product.id}`} className="solution-detail-card__product-tag">
+                            {product.name}
+                          </Link>
+                        ) : (
+                          <span key={i} className="solution-detail-card__product-tag">{productId}</span>
+                        )
+                      })}
                     </div>
                   </div>
 

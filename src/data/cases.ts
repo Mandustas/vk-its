@@ -1,3 +1,9 @@
+import caseTransport from '../assets/images/case-transport.jpg'
+import smartCity from '../assets/images/smart-city.jpg'
+import caseIndustry from '../assets/images/case-industry.jpg'
+import caseCity from '../assets/images/case-city.jpg'
+import securityCamera from '../assets/images/security-camera.jpg'
+
 export interface Case {
   id: string;
   title: string;
@@ -7,7 +13,7 @@ export interface Case {
   solution: string;
   results: string[];
   products: string[];
-  image?: string;
+  image: string;
 }
 
 export const cases: Case[] = [
@@ -24,7 +30,8 @@ export const cases: Case[] = [
       'Средняя скорость движения снизилась с 95 до 78 км/ч',
       'Распознавание номеров с точностью 98.5%'
     ],
-    products: ['factor-kfvvf', 'server-analytics']
+    products: ['factor-kfvvf', 'server-analytics'],
+    image: caseTransport
   },
   {
     id: 'case-tatarstan',
@@ -39,7 +46,8 @@ export const cases: Case[] = [
       'Автоматическая детекция 95% дорожных событий',
       'Интеграция с системой «Безопасный город»'
     ],
-    products: ['factor-ai', 'server-analytics', 'factor-kfvvf']
+    products: ['factor-ai', 'server-analytics', 'factor-kfvvf'],
+    image: smartCity
   },
   {
     id: 'case-gazprom',
@@ -54,7 +62,8 @@ export const cases: Case[] = [
       'Автоматический контроль 24/7 без участия оператора',
       'Интеграция с существующей СКУД'
     ],
-    products: ['factor-ai', 'factor-b2', 'video-surveillance']
+    products: ['factor-ai', 'factor-b2', 'video-surveillance'],
+    image: caseIndustry
   },
   {
     id: 'case-moscow',
@@ -69,7 +78,8 @@ export const cases: Case[] = [
       'Помощь в раскрытии более 2500 правонарушений',
       'Интеграция с базами данных МВД'
     ],
-    products: ['factor-ai', 'server-analytics']
+    products: ['factor-ai', 'server-analytics'],
+    image: caseCity
   },
   {
     id: 'case-airport',
@@ -84,7 +94,8 @@ export const cases: Case[] = [
       'Автоматическая детекция оставленных предметов',
       'Соответствие требованиям ICAO и ЕС РА'
     ],
-    products: ['factor-ai', 'video-surveillance', 'server-analytics']
+    products: ['factor-ai', 'video-surveillance', 'server-analytics'],
+    image: securityCamera
   },
   {
     id: 'case-spb',
@@ -99,6 +110,7 @@ export const cases: Case[] = [
       'Экономия 40% на операторах видеонаблюдения',
       'Интеграция с системой «Безопасный город»'
     ],
-    products: ['factor-ai', 'factor-b2', 'server-analytics']
+    products: ['factor-ai', 'factor-b2', 'server-analytics'],
+    image: caseCity
   }
 ];

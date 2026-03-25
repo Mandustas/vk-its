@@ -1,3 +1,4 @@
+import officeTeam from '../assets/images/office-team.jpg'
 import './About.scss'
 
 const newsItems = [
@@ -135,6 +136,10 @@ function About() {
                     <div className="about-stat__label">точность ANPR</div>
                   </div>
                 </div>
+              </div>
+
+              <div className="about-team-photo mt-2">
+                <img src={officeTeam} alt="Команда ВК ИТС" className="about-team-photo__img" loading="lazy" />
               </div>
 
               <div className="about-card mt-2">

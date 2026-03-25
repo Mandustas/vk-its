@@ -1,1 +1,37 @@
 @import '../styles/variables';
+
+.about-page {
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--spacing-2xl);
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .about-team-photo {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-gray-200);
+
+    &__img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover &__img {
+      transform: scale(1.03);
+    }
+  }
+}

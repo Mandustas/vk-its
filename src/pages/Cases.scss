@@ -48,17 +48,44 @@
   .case-item-card {
     background: var(--color-white);
     border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--color-gray-200);
     transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     &:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-xl);
       border-color: var(--color-primary-light);
+
+      .case-item-card__image {
+        transform: scale(1.08);
+      }
+    }
+
+    &__image-wrapper {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+      position: relative;
+      flex-shrink: 0;
+
+      .case-item-card__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    &__content {
+      padding: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     &__header {
@@ -185,6 +212,13 @@
       padding: var(--spacing-xs) var(--spacing-sm);
       border-radius: var(--radius-md);
       color: var(--color-gray-700);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+
+      &:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
+      }
     }
   }
 
