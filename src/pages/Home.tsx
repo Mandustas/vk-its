@@ -181,7 +181,7 @@ function Home() {
           </div>
           <div className="grid grid--3">
             {featuredProducts.map((product, index) => (
-              <Link to={`/products/${product.id}`} key={product.id} className={`card product-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
+              <Link to={`/products/${product.id}`} key={product.id} className={`product-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
                 <div className="product-card__image-wrapper">
                   {product.image && (
                     <img src={product.image} alt={product.name} className="product-card__image" loading="lazy" />
@@ -280,28 +280,30 @@ function Home() {
           </div>
           <div className="grid grid--3">
             {featuredCases.map((caseItem, index) => (
-              <div key={caseItem.id} className={`card case-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
+              <div key={caseItem.id} className={`case-card glow-on-hover reveal reveal-delay-${(index % 4) + 1}`}>
                 <div className="case-card__image-wrapper">
                   {caseItem.image && (
                     <img src={caseItem.image} alt={caseItem.title} className="case-card__image" loading="lazy" />
                   )}
                 </div>
-                <div className="case-card__header">
-                  <span className="case-card__industry">
-                    {caseItem.industry === 'transport' && 'Транспорт'}
-                    {caseItem.industry === 'industry' && 'Промышленность'}
-                    {caseItem.industry === 'smart-city' && 'Умный город'}
-                    {caseItem.industry === 'critical-infrastructure' && 'Инфраструктура'}
-                  </span>
+                <div className="case-card__content">
+                  <div className="case-card__header">
+                    <span className="case-card__industry">
+                      {caseItem.industry === 'transport' && 'Транспорт'}
+                      {caseItem.industry === 'industry' && 'Промышленность'}
+                      {caseItem.industry === 'smart-city' && 'Умный город'}
+                      {caseItem.industry === 'critical-infrastructure' && 'Инфраструктура'}
+                    </span>
+                  </div>
+                  <h3 className="case-card__title">{caseItem.title}</h3>
+                  <p className="case-card__client">{caseItem.client}</p>
+                  <ul className="case-card__results">
+                    {caseItem.results.slice(0, 2).map((result, i) => (
+                      <li key={i}>{result}</li>
+                    ))}
+                  </ul>
+                  <Link to="/cases" className="case-card__link">Подробнее →</Link>
                 </div>
-                <h3 className="case-card__title">{caseItem.title}</h3>
-                <p className="case-card__client">{caseItem.client}</p>
-                <ul className="case-card__results">
-                  {caseItem.results.slice(0, 2).map((result, i) => (
-                    <li key={i}>{result}</li>
-                  ))}
-                </ul>
-                <Link to="/cases" className="case-card__link">Подробнее →</Link>
               </div>
             ))}
           </div>

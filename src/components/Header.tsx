@@ -40,7 +40,7 @@ function Header() {
   }
 
   return (
-    <header className="header">
+    <header className={`header ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
       <div className="container header__container">
         <Link to="/" className="header__logo">
           <div className="header__logo-icon">
@@ -53,6 +53,8 @@ function Header() {
             <strong>ВК</strong> ИТС
           </span>
         </Link>
+
+        <div className="header__overlay" onClick={() => setMobileMenuOpen(false)}></div>
 
         <nav className={`header__nav ${mobileMenuOpen ? 'header__nav--open' : ''}`}>
           {menuItems.map((item) => (
@@ -105,8 +107,8 @@ function Header() {
             </svg>
           </Link>
           <a href="tel:+74951234567" className="header__phone">+7 (495) 123-45-67</a>
-          <button 
-            className="header__burger" 
+          <button
+            className={`header__burger ${mobileMenuOpen ? 'open' : ''}`}
             onClick={toggleMobileMenu}
             aria-label="Меню"
           >
