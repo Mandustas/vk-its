@@ -467,14 +467,17 @@
   text-decoration: none;
   color: inherit;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 200px 1fr;
   gap: var(--spacing-lg);
-  align-items: start;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-  position: relative;
+  align-items: stretch;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: all var(--transition-base);
+
   &::before {
     content: '';
     position: absolute;
@@ -483,48 +486,75 @@
     background-size: 200% 200%;
     opacity: 0;
     transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
   }
-  
+
   &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+
     &::before {
       opacity: 1;
       animation: gradientShift 3s ease infinite;
     }
-    
-    .solution-card__icon {
-      background: var(--gradient-primary);
-      color: var(--color-white);
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+
+    .solution-card__image {
+      transform: scale(1.08);
     }
   }
-  
+
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
     text-align: center;
+    
+    .solution-card__image-wrapper {
+      height: 180px;
+    }
   }
 }
 
+.solution-card__image-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+  position: relative;
+  flex-shrink: 0;
+
+  .solution-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+}
+.solution-card__content{
+    padding: 10px
+}
 // CTA with neon glow
 .cta-card {
-  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-  border-radius: var(--radius-2xl);
-  padding: var(--spacing-3xl);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, 0.3);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  
-  @media (max-width: 768px) {
-    padding: var(--spacing-2xl);
-  }
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-3xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-2xl);
+    }
 }
 
 .cta-card__content {

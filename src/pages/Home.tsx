@@ -220,46 +220,16 @@ function Home() {
           </div>
           <div className="grid grid--2">
             {featuredSolutions.map((solution, index) => (
-              <Link to="/solutions" key={solution.id} className={`card solution-card reveal reveal-delay-${(index % 4) + 1}`}>
-                <div className="solution-card__icon">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {solution.icon === 'truck' && (
-                      <>
-                        <rect x="6" y="18" width="28" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <circle cx="14" cy="38" r="4" stroke="currentColor" strokeWidth="2"/>
-                        <circle cx="30" cy="38" r="4" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M34 24H42L44 30V36H38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </>
-                    )}
-                    {solution.icon === 'factory' && (
-                      <>
-                        <rect x="8" y="20" width="32" height="20" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M14 20V14M22 20V10M30 20V16M38 20V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                        <rect x="16" y="26" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
-                        <rect x="28" y="26" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
-                      </>
-                    )}
-                    {solution.icon === 'city' && (
-                      <>
-                        <rect x="6" y="16" width="14" height="24" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <rect x="24" y="8" width="18" height="32" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M10 22H16M10 28H16M28 14H38M28 20H38M28 26H38" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </>
-                    )}
-                    {solution.icon === 'shield' && (
-                      <>
-                        <path d="M24 4L8 10V20C8 30 15 38 24 42C33 38 40 30 40 20V10L24 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-                        <path d="M18 24L22 28L30 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </>
-                    )}
-                  </svg>
+              <Link to="/solutions" key={solution.id} className={`solution-card reveal reveal-delay-${(index % 4) + 1}`}>
+                <div className="solution-card__image-wrapper">
+                  <img src={solution.image} alt={solution.name} className="solution-card__image" loading="lazy" />
                 </div>
                 <div className="solution-card__content">
                   <h3 className="solution-card__title">{solution.name}</h3>
                   <p className="solution-card__desc">{solution.shortDescription}</p>
                   <ul className="solution-card__features">
                     {solution.features.slice(0, 3).map((feature, i) => (
-                      <li key={i}>• {feature}</li>
+                      <li key={i}>{feature}</li>
                     ))}
                   </ul>
                 </div>

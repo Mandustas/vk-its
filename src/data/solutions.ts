@@ -1,9 +1,15 @@
+import transportImg from '../assets/images/solution-transport.jpg'
+import industryImg from '../assets/images/solution-industry.jpg'
+import cityImg from '../assets/images/solution-city.jpg'
+import securityImg from '../assets/images/solution-security.jpg'
+
 export interface Solution {
   id: string;
   name: string;
   shortDescription: string;
   description: string;
   icon: string;
+  image: string;
   problems: string[];
   features: string[];
   recommendedProducts: string[];
@@ -17,6 +23,7 @@ export const solutions: Solution[] = [
     shortDescription: 'Интеллектуальные транспортные системы и контроль дорожного движения',
     description: 'Комплексные решения для управления транспортными потоками, контроля нарушений ПДД и повышения безопасности на дорогах.',
     icon: 'truck',
+    image: transportImg,
     problems: [
       'Нарушения скоростного режима',
       'Проезд на запрещающий сигнал',
@@ -40,6 +47,7 @@ export const solutions: Solution[] = [
     shortDescription: 'Системы безопасности и мониторинга для промышленных объектов',
     description: 'Решения для контроля промышленной безопасности, мониторинга технологических процессов и защиты критической инфраструктуры.',
     icon: 'factory',
+    image: industryImg,
     problems: [
       'Контроль доступа на объект',
       'Соблюдение техники безопасности',
@@ -63,6 +71,7 @@ export const solutions: Solution[] = [
     shortDescription: 'Интеллектуальные системы для городской инфраструктуры',
     description: 'Технологии видеоаналитики для повышения безопасности, улучшения городской среды и оптимизации коммунальных служб.',
     icon: 'city',
+    image: cityImg,
     problems: [
       'Общественная безопасность',
       'Контроль благоустройства',
@@ -86,6 +95,7 @@ export const solutions: Solution[] = [
     shortDescription: 'Защита объектов повышенной важности',
     description: 'Специализированные решения для аэропортов, вокзалов, метрополитена и других объектов критической инфраструктуры.',
     icon: 'shield',
+    image: securityImg,
     problems: [
       'Террористическая угроза',
       'Контроль доступа',
