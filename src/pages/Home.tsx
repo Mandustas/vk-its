@@ -65,6 +65,8 @@ function Home() {
       {/* Hero Section with 3D effects */}
       <section className="hero">
         <div className="hero__bg">
+          <div className="hero__image-bg"></div>
+          <div className="hero__overlay"></div>
           <div className="hero__gradient"></div>
           <div className="hero__grid"></div>
           <div className="hero__particles">
@@ -315,6 +317,10 @@ function Home() {
       <section className="cta-section section reveal">
         <div className="container">
           <div className="cta-card">
+            <div className="cta-card__bg">
+              <div className="cta-card__image-bg"></div>
+              <div className="cta-card__overlay"></div>
+            </div>
             <div className="cta-card__content">
               <h2>Нужна помощь с выбором решения?</h2>
               <p>

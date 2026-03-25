@@ -21,24 +21,19 @@ function Solutions() {
       <section className="section">
         <div className="container">
           <div className="solutions-intro">
+            <div className="solutions-intro__bg">
+              <div className="solutions-intro__image-bg"></div>
+              <div className="solutions-intro__overlay"></div>
+            </div>
             <div className="solutions-intro__content">
               <h2>Подберем решение под ваши задачи</h2>
               <p>
-                Каждый проект уникален. Наши специалисты проанализируют ваши требования 
+                Каждый проект уникален. Наши специалисты проанализируют ваши требования
                 и предложат оптимальную конфигурацию с учетом бюджета и сроков
               </p>
               <Link to="/contacts" className="btn btn--primary btn--lg">
                 Получить консультацию
               </Link>
-            </div>
-            <div className="solutions-intro__image">
-              <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="40" width="80" height="120" rx="4" fill="rgba(37, 99, 235, 0.2)" stroke="rgba(37, 99, 235, 0.4)" strokeWidth="2"/>
-                <rect x="110" y="20" width="80" height="140" rx="4" fill="rgba(37, 99, 235, 0.3)" stroke="rgba(37, 99, 235, 0.5)" strokeWidth="2"/>
-                <rect x="200" y="60" width="80" height="100" rx="4" fill="rgba(37, 99, 235, 0.25)" stroke="rgba(37, 99, 235, 0.45)" strokeWidth="2"/>
-                <circle cx="60" cy="80" r="20" fill="rgba(6, 182, 212, 0.3)"/>
-                <path d="M50 80L58 88L70 72" stroke="rgba(6, 182, 212, 0.8)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
             </div>
           </div>
         </div>
